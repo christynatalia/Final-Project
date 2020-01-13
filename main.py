@@ -8,6 +8,8 @@ Created on Sat Dec 21 13:39:41 2019
 
 from inputnumbers import Data
 
+from introduction import Introduction
+
 import matplotlib.pyplot as plt
 
 import math
@@ -16,25 +18,24 @@ import numpy
 
 from matplotlib import pyplot
 
-from introduction import Introduction
-
 import sys
 
 #Make the lists for the history
 historyList = []
 
 #Loop everytime the user type yes on the introduction
+print('This program can make a quadratic equations graph.\n')
 while True:
     intro = Introduction()
-    intromsg = intro.programintro()
-    intromsg = intromsg.title()
-    if intromsg == 'Yes':
+    intromessage = intro.programintro()
+    intromessage = intromessage.lower()
+    if intromessage == 'yes':
         print("The formula is Ax",chr(0x00B2) ,"+ Bx + C")
         value = Data()
         valueA = int(value.newInputA())
         valueB = int(value.newInputB())
         valueC = int(value.newInputC())
-    elif intromsg == 'No':
+    elif intromessage == 'no':
         print('Thankyou for using this program. See you next time!')
         sys.exit()
     else:
@@ -48,6 +49,7 @@ while True:
             global discriminantValue
             discriminantValue =(((valueB**2) - (4*valueA*valueC)))
             return discriminantValue
+        print("The discriminant of this graph is = ",discriminant())
         
         
         def roots():
@@ -55,14 +57,14 @@ while True:
                 print("can't count because it is imaginary(non-real)roots" )
                 sys.exit()
             else:
-                roots = math.sqrt(int(discriminantValue))
+                rootss = math.sqrt(int(discriminantValue))
                 global x1
                 global x2
-                x1 = round((-valueB + roots) / (2*valueA),2)
-                x2 = round((-valueB - roots) / (2*valueA),2)
+                x1 = round((-valueB + rootss) / (2*valueA),2)
+                x2 = round((-valueB - rootss) / (2*valueA),2)
                 return x1,x2
         
-        print("The discriminant of this graph is =",discriminant())
+        
         print("X1,X2 = ",roots())
         
         def highestpoint():
@@ -76,11 +78,17 @@ while True:
         
         #for the conclusion part.
         def conclusion():
-            if (discriminantValue > 0 and valueA > 0) or (discriminantValue > 0 and valueA < 0):
+            if (discriminantValue > 0 and valueA > 0):
                 conclmsg = ("The conclusion is Graph intersects the x-axis ")
-            elif (discriminantValue == 0 and valueA > 0) or (discriminantValue == 0 and valueA < 0):
-                conclmsg = ("The conclusion is = Grafik menyinggung sumbu x ")
-            elif (discriminantValue < 0 and valueA > 0) or (discriminantValue < 0 and valueA < 0):
+            elif (discriminantValue > 0 and valueA < 0):
+                conclmsg = ("The conclusion is Graph intersects the x-axis ")
+            elif (discriminantValue == 0 and valueA > 0): 
+                conclmsg = ("The conclusion is Grafik menyinggung sumbu x ")
+            elif (discriminantValue == 0 and valueA < 0):
+                conclmsg = ("The conclusion is Grafik menyinggung sumbu x ")
+            elif (discriminantValue < 0 and valueA > 0):
+                conclmsg = ("No intercepts.")
+            elif (discriminantValue < 0 and valueA < 0):
                 conclmsg = ("No intercepts.")
             return conclmsg
         
@@ -95,7 +103,7 @@ while True:
         
  
         #Make the graph 
-        x=numpy.linspace(float(x2),float(x1),50);
+        x=numpy.linspace(float(x2),float(x1),100);
         y=(valueA *( x ** 2)) +(( x * valueB ))+ valueC
         pyplot.plot(x,y);
         plt.scatter(float(highx),float(highy),s=20, c= "green",label = 'HP=' + '('+ str(highx) + ',' + str(highy)+')')

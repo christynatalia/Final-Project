@@ -96,6 +96,7 @@ while True:
         
         #for the history
         historyList.append(str(valueA) + ", " + str(valueB) + ", " + str(valueC))
+        
         def printHistory():
             for i in range(len(historyList)):
                 print("History {}: {}".format(i + 1, historyList[i]))

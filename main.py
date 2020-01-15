@@ -23,7 +23,7 @@ import sys
 #Make the lists for the history
 historyList = []
 
-#Loop everytime the user type yes on the introduction
+#Loop everytime the graph already appeared.
 print('This program can make a quadratic equations graph.\n')
 while True:
     intro = Introduction()
@@ -83,9 +83,9 @@ while True:
             elif (discriminantValue > 0 and valueA < 0):
                 conclmsg = ("The conclusion is Graph intersects the x-axis ")
             elif (discriminantValue == 0 and valueA > 0): 
-                conclmsg = ("The conclusion is Grafik menyinggung sumbu x ")
+                conclmsg = ("The conclusion is graph touches the x axis.")
             elif (discriminantValue == 0 and valueA < 0):
-                conclmsg = ("The conclusion is Grafik menyinggung sumbu x ")
+                conclmsg = ("The conclusion is graph touches the x axis. ")
             elif (discriminantValue < 0 and valueA > 0):
                 conclmsg = ("No intercepts.")
             elif (discriminantValue < 0 and valueA < 0):
